@@ -68,4 +68,25 @@ class FriendsController extends Controller
             ->route('friends.index')
             ->with('success', 'Friend is added successfully!');
     }
+
+    public function getDeny($name){
+        $user = User::where('name', $name)->first();
+
+        if( !$user ) {
+            return redirect()
+                ->route('users')
+                ->with('error', 'User is not found');
+        }
+
+        if ( !Auth::user()->hasFriendRequestReceived($user)) {
+            return redirect()
+                ->route('friends');
+        }
+
+        Auth::user()->denyFriendRequest($user);
+
+        return redirect()
+            ->route('friends.index')
+            ->with('success', 'Friend Request is denied successfully!');
+    }
 }

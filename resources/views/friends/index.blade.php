@@ -32,6 +32,7 @@
                     @if ( Auth::user()->hasFriendRequestReceived($user) )
                         @include('users.partial.userblock')
                         <a href="{{ route('friends.accept', ['name' => $user->name])  }}" class="btn btn-primary mb-2">Accept friend request</a>
+                        <a href="{{ route('friends.deny', ['name' => $user->name])  }}" class="btn btn-danger mb-2">Deny friend request</a>
                     @endif
                 @endforeach
             @endif

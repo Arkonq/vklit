@@ -50,4 +50,5 @@ Route::get('/users', [App\Http\Controllers\UsersController::class, 'getList'])->
 Route::get('/friends', [App\Http\Controllers\FriendsController::class, 'getIndex'])->middleware('auth')->name('friends.index');
 Route::get('/friends/add/{name}', [App\Http\Controllers\FriendsController::class, 'getAdd'])->middleware('auth')->name('friends.add');
 Route::get('/friends/accept/{name}', [App\Http\Controllers\FriendsController::class, 'getAccept'])->middleware('auth')->name('friends.accept');
+Route::get('/friends/deny/{name}', [App\Http\Controllers\FriendsController::class, 'getDeny'])->middleware('auth')->name('friends.deny');
 

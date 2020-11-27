@@ -97,6 +97,13 @@ class User extends Authenticatable
         ]);
     }
 
+    public function denyFriendRequest(User $user)
+    {
+        $this->friendRequests()->where('id', $user->id)->first()->pivot->update([
+            'accepted' => false
+        ]);
+    }
+
     // пользователь уже в друзьях
     public function isFriendWith(User $user) {
         return (bool) $this->friends()->where('id', $user->id)->count();
